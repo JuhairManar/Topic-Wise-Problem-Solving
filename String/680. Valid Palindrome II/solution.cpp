@@ -16,9 +16,12 @@ public:
         if(c==p) return 1;
 
         a++;
+        if(j-i==1) return 1;
 
         bool f=false;
-        while(a<=b){
+
+        while(a<=b)
+        {
             if(s[a]!=s[b]){
                 f=true;
                 break;
@@ -26,19 +29,23 @@ public:
             a++;b--;
         }
 
-        if(f){
+        if(!f) {
+            return 1;
+            }
+
+        else
+        {
+
             a=i;b=j-1;
-            while(a<=b){
+            while(a<=b)
+            {
             if(s[a]!=s[b]){
                 return 0;
             }
-        }
-        }
-
-        else{
-            return 0;
+            a++;b--;
+            }
         }
 
-        return 0;
+        return 1;
     }
 };
