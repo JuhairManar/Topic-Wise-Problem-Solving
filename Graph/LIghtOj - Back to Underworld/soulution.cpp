@@ -7,7 +7,7 @@ using namespace std;
 #define pb push_back
 
 void dfs(vector<vector<long>>&v,vector<long>& vis,vector<long>& in_col, vector<long>& ca,long root){
-    if(vis[root]) return;
+    // if(vis[root]) return;
     vis[root]=1;
 
     for(auto g:v[root]){
@@ -35,13 +35,14 @@ void solve(){
     }
     // in_col[mn]=0;
     for(i=mn;i<=mx;i++){
-        if(!vis[i]){
+        if(!vis[i] && v[i].size()){
             in_col[i]=0;
-            ca[0]++;
+            ca[0]=1;ca[1]=0;
             dfs(v,vis,in_col,ca,i);
             s+=max(ca[0],ca[1]);
         }
     }
+
 
     cout<<s<<"\n";
 }
