@@ -1,4 +1,4 @@
-// link -https://cses.fi/problemset/task/1131
+// link - https://vjudge.net/contest/710539#problem/M
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -15,60 +15,53 @@ int main()
     cin.tie(NULL);
 /*  freopen(input.txt, 'r', stdin);
     freopen(output.txt, 'w', stdout); */
-    long n,a,b,i,j,mx=0,mn1,mn2;
+    
+    long n,m,a,b,i,t;
     cin>>n;
-    vector<vector<long>>v(n+1);
+
+    vector<vector<long>>v(n);
+    vector<long>vis(n,0),lev(n,0);
+
     for(i=1;i<n;i++){
         cin>>a>>b;
-        v[a].pb(b);
-        v[b].pb(a);
-    }             
-    
-    vector<long>vis(n+1,0),lev(n+1,0);
+        v[a-1].pb(b-1);
+        v[b-1].pb(a-1);
+    }
+
     queue<long>q;
-    q.push(1);
-    vis[1]=1;
-    while (!q.empty())
-    {
-        long t=q.front();
+    q.push(0);
+    vis[0]=1;
+
+    while(!q.empty()){
+        t=q.front();
         q.pop();
+
 
         for(auto g:v[t]){
             if(!vis[g]){
-                q.push(g);
-                lev[g]=lev[t]+1;
                 vis[g]=1;
-                if(lev[g]>mx){
-                    mx=lev[g];
-                    mn1=g;
-                }
+                q.push(g);
             }
         }
     }
     fill(vis.begin(),vis.end(),0);
-    fill(lev.begin(),lev.end(),0);
-    q.push(mn1);
-    vis[mn1]=1;
+    vis[t]=1;
+    q.push(t);
 
-    while (!q.empty())
-    {
-        long t=q.front();
+    while(!q.empty()){
+        t=q.front();
         q.pop();
 
         for(auto g:v[t]){
             if(!vis[g]){
+                vis[g]=1;
                 q.push(g);
                 lev[g]=lev[t]+1;
-                vis[g]=1;
-                if(lev[g]>mx){
-                    mx=lev[g];
-                    mn2=g;
-                }
             }
         }
     }
 
-    cout<<mx;
+    cout<<lev[t];
 
   return 0;
 }
