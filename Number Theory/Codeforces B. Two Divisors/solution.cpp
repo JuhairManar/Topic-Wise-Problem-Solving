@@ -15,7 +15,7 @@ void solve(){
         cout<<((y/x)*y);
     }
     else{
-        cout<<(x*y)/(__gcd(x,y));
+        cout<<x*(y/__gcd(x,y));
     }   
     cout<<"\n";
 }
