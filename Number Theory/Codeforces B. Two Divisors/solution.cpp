@@ -1,3 +1,5 @@
+// link - https://codeforces.com/contest/1916/problem/B
+
 #pragma GCC optimize("Ofast")
 #include<bits/stdc++.h>
 using namespace std;
